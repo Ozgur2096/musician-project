@@ -10,7 +10,6 @@ export const GlobalProvider = ({ children }) => {
     const fetchBands = async () => {
       const response = await fetch('/bands');
       const result = await response.json();
-      console.log(result);
       setBands(result);
     };
 
@@ -21,7 +20,6 @@ export const GlobalProvider = ({ children }) => {
     const fetchMusicians = async () => {
       const response = await fetch('/musicians');
       const result = await response.json();
-      console.log(result);
       setMusicians(result);
     };
 

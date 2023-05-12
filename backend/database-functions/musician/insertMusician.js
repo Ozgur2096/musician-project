@@ -1,11 +1,6 @@
-import { MongoClient } from 'mongodb';
-
+import { client } from '../../server.js';
 export async function insertMusician(newMusician) {
-  const client = new MongoClient(
-    'mongodb+srv://ozgur2096:UVPIQQz9pPm6NAhd@cluster0.uey3alv.mongodb.net/?retryWrites=true&w=majority'
-  );
   try {
-    await client.connect();
     await client
       .db('band-musician')
       .collection('musicians')
@@ -13,7 +8,5 @@ export async function insertMusician(newMusician) {
     console.log(`New musician card created`);
   } catch (e) {
     console.error(e);
-  } finally {
-    await client.close();
   }
 }

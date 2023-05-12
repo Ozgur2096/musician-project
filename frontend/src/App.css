@@ -100,3 +100,17 @@ button:hover {
   align-items: center;
   justify-content: center;
 }
+
+/* registration */
+.registration {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+/* message (error, warning, success) */
+.message {
+  margin: auto;
+}
