@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import { Nav } from './Nav';
+import { useState } from 'react';
+import { BandsTab } from './BandsTab';
+import { Tabs } from './Tabs';
 
 export const HomePage = () => {
-  useEffect(() => {
-    const fetchBands = async () => {
-      const response = await fetch('/bands');
-      const result = await response.json();
-      console.log(result);
-    };
+  const [isTabClicked, setIsTabClicked] = useState(false);
 
-    fetchBands();
-  }, []);
+  return (
+    <>
+      <Nav />
+      <Tabs handleSetIsTabClicked={setIsTabClicked} />
 
-  return <div>Home</div>;
+      {isTabClicked ? <Outlet /> : <BandsTab />}
+    </>
+  );
 };
