@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Nav } from './Nav';
+import { Navigate } from 'react-router-dom';
+import { GlobalContext } from '../context/GlobalState';
 
 export const LogInForm = () => {
+  const { handleLoggedIn } = useContext(GlobalContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const [userId, setUserId] = useState('');
 
   const handleSubmit = event => {
     event.preventDefault();
     const userData = {
-      email: email,
-      password: password,
+      email,
+      password,
     };
     // Make a POST request to the server to check if the user credentials are valid
     fetch('/users/login', {
@@ -25,6 +31,13 @@ export const LogInForm = () => {
         } else {
           console.error('User login failed:', response.status);
         }
+        return response;
+      })
+      .then(response => response.json())
+      .then(data => {
+        setUserId(data.userId);
+        handleLoggedIn(data.userId);
+        return data;
       })
       .catch(error => {
         console.error('Error logging in user:', error);
@@ -55,6 +68,7 @@ export const LogInForm = () => {
         </div>
         <button type='submit'>Log In</button>
       </form>
+      {userId && <Navigate to='/user/home' replace={true} />}
     </>
   );
 };

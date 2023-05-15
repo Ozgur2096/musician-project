@@ -42,6 +42,7 @@ img {
 .tab {
   color: black;
   background-color: azure;
+  font-size: 2rem;
 }
 
 /* Log in and Register */
@@ -74,7 +75,7 @@ button {
   border: none;
   border-radius: 5px;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -95,10 +96,18 @@ button:hover {
   padding: 1rem;
   border: 1px solid #a4a4a4;
   border-radius: 10px;
+  background-color: aquamarine;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  row-gap: 1rem;
+}
+
+.fav-apply-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* registration */

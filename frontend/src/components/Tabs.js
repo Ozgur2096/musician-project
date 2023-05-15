@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
+import { GlobalContext } from '../context/GlobalState';
+import { useContext } from 'react';
 
 export const Tabs = ({ handleSetIsTabClicked }) => {
+  const { isLoggedIn } = useContext(GlobalContext);
   return (
     <div className='tabs'>
       <Link
-        to='/bands'
+        to={isLoggedIn ? '/user/home/bands' : '/bands'}
         className='tab'
         onClick={() => {
           handleSetIsTabClicked(true);
@@ -13,7 +16,7 @@ export const Tabs = ({ handleSetIsTabClicked }) => {
         Bands
       </Link>
       <Link
-        to='/musicians'
+        to={isLoggedIn ? '/user/home/musicians' : '/musicians'}
         className='tab'
         onClick={() => {
           handleSetIsTabClicked(true);
