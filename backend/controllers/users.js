@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import {
   insertUser,
   checkExistingEmail,
@@ -16,7 +17,7 @@ export const createUser = async (req, res) => {
       .status(400)
       .send({ message: 'This email is already connected to an account.' });
   } else {
-    await insertUser({ email, password, favorites: [] });
+    await insertUser({ userId: uuidv4(), email, password, favorites: [] });
     res.send({ message: 'A new user created.' });
   }
 };

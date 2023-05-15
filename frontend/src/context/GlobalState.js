@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { updateFavorites } from '../utils/updateFavorites';
+import { fetchData } from '../utils/fetchData';
 
 export const GlobalContext = createContext();
 
@@ -11,6 +12,16 @@ export const GlobalProvider = ({ children }) => {
   const [bands, setBands] = useState([]);
 
   const [favoriteIds, setFavoriteIds] = useState([]);
+
+  // Check if the user is already logged in LOCAL STORAGE
+  useEffect(() => {
+    const storedLoggedIn = localStorage.getItem('isLoggedIn');
+    const storedUserId = localStorage.getItem('userId');
+    if (storedLoggedIn === 'true' && storedUserId) {
+      setIsLoggedIn(true);
+      setUserId(storedUserId);
+    }
+  }, []);
 
   // Favorite Ids
   useEffect(() => {
@@ -35,30 +46,21 @@ export const GlobalProvider = ({ children }) => {
   const handleLoggedIn = userId => {
     setIsLoggedIn(true);
     setUserId(userId);
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('userId', userId);
   };
   const handleLogOut = () => {
     updateFavorites(userId, favoriteIds);
     setUserId('');
     setIsLoggedIn(false);
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem(userId);
   };
 
   // fetch data from the database and send
   useEffect(() => {
-    const fetchBands = async () => {
-      const response = await fetch('/bands');
-      const result = await response.json();
-      setBands(result);
-    };
-    fetchBands();
-  }, []);
-
-  useEffect(() => {
-    const fetchMusicians = async () => {
-      const response = await fetch('/musicians');
-      const result = await response.json();
-      setMusicians(result);
-    };
-    fetchMusicians();
+    fetchData('/bands', setBands);
+    fetchData('/musicians', setMusicians);
   }, []);
 
   return (

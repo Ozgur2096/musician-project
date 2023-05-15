@@ -18,7 +18,7 @@ export const Favorites = () => {
       <h3>Bands</h3>
       <ul className='cards'>
         {favBands.length > 0 ? (
-          favBands.map(band => <BandCard band={band} />)
+          favBands.map(band => <BandCard key={band._id} band={band} />)
         ) : (
           <div className='message'>
             You haven't chosen any favorite band yet!
@@ -27,9 +27,10 @@ export const Favorites = () => {
       </ul>
       <h3>Musicians</h3>
       <ul className='cards'>
-        {' '}
         {favMusicians.length > 0 ? (
-          favMusicians.map(musician => <MusicianCard musician={musician} />)
+          favMusicians.map(musician => (
+            <MusicianCard key={musician._id} musician={musician} />
+          ))
         ) : (
           <div className='message'>
             You haven't chosen any favorite musician yet!

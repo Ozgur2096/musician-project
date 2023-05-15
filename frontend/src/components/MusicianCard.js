@@ -5,9 +5,10 @@ import { ApplyButton } from './ApplyButton';
 
 export const MusicianCard = ({ musician }) => {
   const { isLoggedIn } = useContext(GlobalContext);
-  const { _id, firstName, lastName, genre } = musician;
+  const { _id, firstName, lastName, genre, image_url } = musician;
   return (
     <li className='card'>
+      <img src={image_url} alt='musician' />
       <div>
         Name: {firstName} {lastName}
       </div>

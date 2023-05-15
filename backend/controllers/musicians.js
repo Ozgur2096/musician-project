@@ -12,10 +12,21 @@ export const getMusicians = async (req, res) => {
 };
 
 export const createMusician = async (req, res) => {
+  const avatarUrl = await fetchRandomUser();
+
   const musician = await req.body;
   console.log(musician);
-  const { firstName, lastName, instrument, genre } = musician;
-  await insertMusician({ firstName, lastName, instrument, genre });
+  const { userId, firstName, lastName, instrument, genre, description } =
+    musician;
+  await insertMusician({
+    userId,
+    firstName,
+    lastName,
+    instrument,
+    genre,
+    description,
+    image_url: avatarUrl,
+  });
   res.send('A new musician card created');
 };
 
@@ -46,3 +57,16 @@ export const updateMusician = (req, res) => {
   }
   res.send(userToBeUpdated);
 };
+
+// this function is for presentation
+async function fetchRandomUser() {
+  try {
+    const response = await fetch('https://randomuser.me/api/');
+    const data = await response.json();
+    const avatarUrl = data.results[0].picture.large;
+    // Use the avatarUrl as needed in your application
+    return avatarUrl;
+  } catch (error) {
+    console.error('Error fetching random user:', error);
+  }
+}
