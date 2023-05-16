@@ -1,4 +1,5 @@
 import { client } from '../../server.js';
+
 export async function insertBand(newBand) {
   try {
     await client.db('band-musician').collection('bands').insertOne(newBand);

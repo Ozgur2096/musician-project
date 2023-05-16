@@ -15,10 +15,10 @@ router.get('/', getMusicians);
 
 router.post('/', createMusician);
 
-router.get('/:id', getMusician);
+router.get('/:cardId', getMusician);
 
-router.delete('/:id', deleteMusician);
+router.delete('/:cardId', deleteMusician);
 
-router.patch('/:id', updateMusician);
+router.patch('/:cardId', updateMusician);
 
 export default router;

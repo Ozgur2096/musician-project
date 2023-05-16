@@ -15,10 +15,10 @@ router.get('/', getBands);
 
 router.post('/', createBand);
 
-router.get('/:id', getBand);
+router.get('/:cardId', getBand);
 
-router.delete('/:id', deleteBand);
+router.delete('/:cardId', deleteBand);
 
-router.patch('/:id', updateBand);
+router.patch('/:cardId', updateBand);
 
 export default router;

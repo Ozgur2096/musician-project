@@ -1,10 +1,18 @@
 import { useState } from 'react';
 import { SelectGenre } from './Select/SelectGenre';
 import { SelectInstrument } from './Select/SelectInstrument';
+import { updateCard } from '../utils/updateCard';
 
 export const MyMusicianCard = ({ musician }) => {
-  const { firstName, lastName, instrument, genre, description, image_url } =
-    musician;
+  const {
+    cardId,
+    firstName,
+    lastName,
+    instrument,
+    genre,
+    description,
+    image_url,
+  } = musician;
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -21,11 +29,16 @@ export const MyMusicianCard = ({ musician }) => {
   };
 
   const handleSave = () => {
-    // Here, you can implement the logic to save the edited data
-    // For simplicity, I'm just updating the component state
-
+    const { firstName, lastName, instrument, genre, description } = editedData;
+    updateCard(`/musicians/${cardId}`, {
+      firstName,
+      lastName,
+      instrument,
+      genre,
+      description,
+    });
+    window.location.reload();
     setIsEditing(false);
-    // You can perform any necessary API calls or state updates here to save the edited data
   };
 
   const handleInputChange = (fieldName, value) => {

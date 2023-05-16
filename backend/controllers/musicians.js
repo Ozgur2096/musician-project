@@ -1,5 +1,8 @@
+import { v4 as uuidv4 } from 'uuid';
 import { findMusicians } from '../database-functions/musician/findMusicians.js';
 import { insertMusician } from '../database-functions/musician/insertMusician.js';
+import { findMusician } from '../database-functions/musician/findMusician.js';
+import { updateMusicianCard } from '../database-functions/musician/updateMusicianCard.js';
 
 let users = [
   { firstName: 'John', lastName: 'Doe', age: 30 },
@@ -19,6 +22,7 @@ export const createMusician = async (req, res) => {
   const { userId, firstName, lastName, instrument, genre, description } =
     musician;
   await insertMusician({
+    cardId: uuidv4(),
     userId,
     firstName,
     lastName,
@@ -30,32 +34,23 @@ export const createMusician = async (req, res) => {
   res.send('A new musician card created');
 };
 
-export const getMusician = (req, res) => {
-  const { id } = req.params;
-  const foundUser = users.find(user => user.id == id);
-  res.send(foundUser);
+export const getMusician = async (req, res) => {
+  const { cardId } = req.params;
+  const musicianCard = await findMusician(cardId);
+  res.send(musicianCard);
+};
+
+export const updateMusician = async (req, res) => {
+  const { cardId } = req.params;
+  const updatedCard = await req.body;
+  await updateMusicianCard(cardId, updatedCard);
+  res.send({ message: 'Card updated' });
 };
 
 export const deleteMusician = (req, res) => {
   const { id } = req.params;
   users = users.filter(user => user.id !== id);
   res.send(users);
-};
-
-export const updateMusician = (req, res) => {
-  const { id } = req.params;
-  const { firstName, lastName, age } = req.body;
-  const userToBeUpdated = users.find(user => user.id == id);
-  if (firstName) {
-    userToBeUpdated.firstName = firstName;
-  }
-  if (lastName) {
-    userToBeUpdated.lastName = lastName;
-  }
-  if (age) {
-    userToBeUpdated.age = age;
-  }
-  res.send(userToBeUpdated);
 };
 
 // this function is for presentation

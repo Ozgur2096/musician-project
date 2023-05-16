@@ -1,3 +1,5 @@
+// PUT Method
+
 export async function updateFavorites(userId, favorites) {
   const url = `/users/favorites/${userId}`;
   const options = {

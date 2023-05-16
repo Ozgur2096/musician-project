@@ -1,5 +1,8 @@
+import { v4 as uuidv4 } from 'uuid';
 import { findBands } from '../database-functions/band/findBands.js';
 import { insertBand } from '../database-functions/band/insertBand.js';
+import { findBand } from '../database-functions/band/findBand.js';
+import { updateBandCard } from '../database-functions/band/updateBandCard.js';
 
 let users = [
   { firstName: 'John', lastName: 'Doe', age: 30 },
@@ -18,6 +21,7 @@ export const createBand = async (req, res) => {
   console.log(band);
   const { userId, name, genre, description, looking_for } = band;
   await insertBand({
+    cardId: uuidv4(),
     userId,
     name,
     genre,
@@ -28,32 +32,23 @@ export const createBand = async (req, res) => {
   res.send('A new band card created');
 };
 
-export const getBand = (req, res) => {
-  const { id } = req.params;
-  const foundUser = users.find(user => user.id == id);
-  res.send(foundUser);
+export const getBand = async (req, res) => {
+  const { cardId } = req.params;
+  const bandCard = await findBand(cardId);
+  res.send(bandCard);
+};
+
+export const updateBand = async (req, res) => {
+  const { cardId } = req.params;
+  const updatedCard = await req.body;
+  await updateBandCard(cardId, updatedCard);
+  res.send({ message: 'Card updated' });
 };
 
 export const deleteBand = (req, res) => {
   const { id } = req.params;
   users = users.filter(user => user.id !== id);
   res.send(users);
-};
-
-export const updateBand = (req, res) => {
-  const { id } = req.params;
-  const { firstName, lastName, age } = req.body;
-  const userToBeUpdated = users.find(user => user.id == id);
-  if (firstName) {
-    userToBeUpdated.firstName = firstName;
-  }
-  if (lastName) {
-    userToBeUpdated.lastName = lastName;
-  }
-  if (age) {
-    userToBeUpdated.age = age;
-  }
-  res.send(userToBeUpdated);
 };
 
 // this function is for presentation
