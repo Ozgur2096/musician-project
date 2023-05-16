@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
-import Select from 'react-select';
 import { GlobalContext } from '../context/GlobalState';
+import { MdAddBox, MdClose } from 'react-icons/md';
+import { SelectGenre } from './Select/SelectGenre';
+import { SelectLookingFor } from './Select/SelectLookingFor';
 
 export const BandCardForm = ({ setCreateBandCard }) => {
   const { userId } = useContext(GlobalContext);
@@ -11,29 +13,13 @@ export const BandCardForm = ({ setCreateBandCard }) => {
     name: '',
     genre: '',
     description: '',
-    searching_for: [],
+    looking_for: [],
   });
-
-  const genreOptions = [
-    { value: 'rock', label: 'Rock' },
-    { value: 'pop', label: 'Pop' },
-    { value: 'jazz', label: 'Jazz' },
-    { value: 'hip-hop', label: 'Hip Hop' },
-    { value: 'country', label: 'Country' },
-    { value: 'alternative', label: 'Alternative' },
-  ];
-
-  const searchingForOptions = [
-    { value: 'guitarist', label: 'Guitarist' },
-    { value: 'bassist', label: 'Bassist' },
-    { value: 'drummer', label: 'Drummer' },
-    { value: 'keyboardist', label: 'Keyboardist' },
-  ];
 
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
-    const { name, genre, description, searching_for } = bandData;
+    const { name, genre, description, looking_for } = bandData;
     const errors = {};
 
     if (!name) {
@@ -48,7 +34,7 @@ export const BandCardForm = ({ setCreateBandCard }) => {
       errors.description = 'Description is required';
     }
 
-    if (!searching_for.length > 0) {
+    if (!looking_for.length > 0) {
       errors.description = 'Role is required';
     }
 
@@ -62,16 +48,6 @@ export const BandCardForm = ({ setCreateBandCard }) => {
       ...prevData,
       [fieldName]: value,
     }));
-  };
-
-  const handleGenreChange = selectedOption => {
-    const genre = selectedOption ? selectedOption.value : '';
-    handleInputChange('genre', genre);
-  };
-
-  const handleSearchForChange = selectedOptions => {
-    const selectedValues = selectedOptions.map(option => option.value);
-    handleInputChange('searching_for', selectedValues);
   };
 
   const handleSubmit = e => {
@@ -108,6 +84,12 @@ export const BandCardForm = ({ setCreateBandCard }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <MdClose
+        className='button-close'
+        onClick={() => {
+          setCreateBandCard(false);
+        }}
+      />
       <div>
         <label htmlFor='name'>Band Name:</label>
         <input
@@ -121,13 +103,7 @@ export const BandCardForm = ({ setCreateBandCard }) => {
       </div>
       <div>
         <label htmlFor='genre'>Genre:</label>
-        <Select
-          id='genre'
-          name='genre'
-          options={genreOptions}
-          value={genreOptions.find(option => option.value === bandData.genre)}
-          onChange={handleGenreChange}
-        />
+        <SelectGenre handleInputChange={handleInputChange} data={bandData} />
         {errors.genre && <span>{errors.genre}</span>}
       </div>
       <div>
@@ -141,20 +117,16 @@ export const BandCardForm = ({ setCreateBandCard }) => {
         {errors.description && <span>{errors.description}</span>}
       </div>
       <div>
-        <label htmlFor='searching_for'>Searching For:</label>
-        <Select
-          id='searching_for'
-          name='searching_for'
-          options={searchingForOptions}
-          isMulti
-          value={searchingForOptions.filter(option =>
-            bandData.searching_for.includes(option.value)
-          )}
-          onChange={handleSearchForChange}
+        <label htmlFor='looking_for'>Looking For:</label>
+        <SelectLookingFor
+          handleInputChange={handleInputChange}
+          data={bandData}
         />
-        {errors.searching_for && <span>{errors.searching_for}</span>}
+        {errors.looking_for && <span>{errors.looking_for}</span>}
       </div>
-      <button type='submit'>Create Band Card</button>
+      <button className='button-add' type='submit'>
+        <MdAddBox className='md-icons' />
+      </button>
       {successMessage && <div className='message'>{successMessage}</div>}
     </form>
   );

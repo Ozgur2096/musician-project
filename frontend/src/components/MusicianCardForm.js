@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
-import Select from 'react-select';
 import { GlobalContext } from '../context/GlobalState';
+import { MdAddBox, MdClose } from 'react-icons/md';
+import { SelectInstrument } from './Select/SelectInstrument';
+import { SelectGenre } from './Select/SelectGenre';
 
 export const MusicianCardForm = ({ setCreateMusicianCard }) => {
   const { userId } = useContext(GlobalContext);
@@ -13,24 +15,6 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
     genre: '',
     description: '',
   });
-
-  const instrumentOptions = [
-    { value: 'guitar', label: 'Guitar' },
-    { value: 'piano', label: 'Piano' },
-    { value: 'drums', label: 'Drums' },
-    { value: 'bass', label: 'Bass' },
-    { value: 'violin', label: 'Violin' },
-    { value: 'saxophone', label: 'Saxophone' },
-  ];
-
-  const genreOptions = [
-    { value: 'rock', label: 'Rock' },
-    { value: 'pop', label: 'Pop' },
-    { value: 'jazz', label: 'Jazz' },
-    { value: 'hip-hop', label: 'Hip Hop' },
-    { value: 'country', label: 'Country' },
-    { value: 'classical', label: 'Classical' },
-  ];
 
   const [errors, setErrors] = useState({});
 
@@ -105,6 +89,12 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <MdClose
+        className='button-close'
+        onClick={() => {
+          setCreateMusicianCard(false);
+        }}
+      />
       <div>
         <label htmlFor='firstName'>First Name:</label>
         <input
@@ -129,32 +119,18 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
       </div>
       <div>
         <label htmlFor='instrument'>Instrument:</label>
-        <Select
-          id='instrument'
-          name='instrument'
-          options={instrumentOptions}
-          value={instrumentOptions.find(
-            option => option.value === musicianData.instrument
-          )}
-          onChange={selectedOption =>
-            handleInputChange('instrument', selectedOption.value)
-          }
+        <SelectInstrument
+          handleInputChange={handleInputChange}
+          data={musicianData}
         />
         {errors.instrument && <span>{errors.instrument}</span>}
       </div>
 
       <div>
         <label htmlFor='genre'>Genre:</label>
-        <Select
-          id='genre'
-          name='genre'
-          options={genreOptions}
-          value={genreOptions.find(
-            option => option.value === musicianData.genre
-          )}
-          onChange={selectedOption =>
-            handleInputChange('genre', selectedOption.value)
-          }
+        <SelectGenre
+          handleInputChange={handleInputChange}
+          data={musicianData}
         />
         {errors.genre && <span>{errors.genre}</span>}
       </div>
@@ -168,7 +144,9 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
         />
         {errors.description && <span>{errors.description}</span>}
       </div>
-      <button type='submit'>Create Musician Card</button>
+      <button className='button-add' type='submit'>
+        <MdAddBox className='md-icons' />
+      </button>
       {successMessage && <div className='message'>{successMessage}</div>}
     </form>
   );

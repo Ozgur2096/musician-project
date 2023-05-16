@@ -16,13 +16,13 @@ export const createBand = async (req, res) => {
 
   const band = await req.body;
   console.log(band);
-  const { userId, name, genre, description, searching_for } = band;
+  const { userId, name, genre, description, looking_for } = band;
   await insertBand({
     userId,
     name,
     genre,
     description,
-    searching_for,
+    looking_for,
     image_url: avatarUrl,
   });
   res.send('A new band card created');

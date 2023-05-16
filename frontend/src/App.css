@@ -3,6 +3,9 @@
   margin: 0;
   padding: 0;
 }
+.App {
+  text-align: center;
+}
 
 a {
   text-decoration: none;
@@ -14,12 +17,8 @@ img {
   border-style: none;
 }
 
-.App {
-  text-align: center;
-}
-
 .md-icons {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 /* NavBar */
@@ -79,12 +78,28 @@ button {
   border: none;
   border-radius: 5px;
   color: white;
-  font-size: 16px;
+  font-size: 1rem;
   cursor: pointer;
 }
 
 button:hover {
   background-color: #0066cc;
+}
+
+.button-add {
+  padding: 0;
+  background-color: rgb(1, 1, 1, 0);
+  color: #0066cc;
+}
+.button-add:hover {
+  color: aqua;
+  cursor: pointer;
+  background-color: rgb(1, 1, 1, 0);
+}
+
+.button-close {
+  cursor: pointer;
+  font-size: 1.5rem;
 }
 
 /* Cards */
@@ -97,9 +112,11 @@ button:hover {
 }
 
 .card {
+  width: 300px;
+  min-height: 400px;
   padding: 1rem;
   border: 1px solid #a4a4a4;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: aquamarine;
   display: flex;
   flex-direction: column;
@@ -114,6 +131,13 @@ button:hover {
 
   padding-bottom: 5px;
   border-radius: 50%;
+}
+
+.instrument {
+  padding: 5px;
+}
+.searching-for {
+  padding: 5px;
 }
 
 .fav-apply-container {

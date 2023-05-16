@@ -5,14 +5,32 @@ import { ApplyButton } from './ApplyButton';
 
 export const MusicianCard = ({ musician }) => {
   const { isLoggedIn } = useContext(GlobalContext);
-  const { _id, firstName, lastName, genre, image_url } = musician;
+  const {
+    _id,
+    firstName,
+    lastName,
+    instrument,
+    genre,
+    description,
+    image_url,
+  } = musician;
+
   return (
     <li className='card'>
       <img src={image_url} alt='musician' />
       <div>
-        Name: {firstName} {lastName}
+        {firstName} {lastName}
       </div>
-      <div>Genre: {genre}</div>
+      <div>
+        Instrument:{' '}
+        {instrument.map(element => (
+          <span className='instrument' key={element}>
+            {element}
+          </span>
+        ))}
+      </div>
+      <div> {genre}</div>
+      <div>{description}</div>
       {isLoggedIn && (
         <div className='fav-apply-container'>
           <Heart cardId={_id} />
