@@ -32,9 +32,11 @@ export const MusicianCard = ({ musician }) => {
       <div> {genre}</div>
       <div>{description}</div>
       {isLoggedIn && (
-        <div className='fav-apply-container'>
-          <Heart cardId={_id} />
-          <ApplyButton />
+        <div>
+          <div className='container-card-bottom'>
+            <Heart cardId={_id} />
+            <ApplyButton card={musician} />
+          </div>
         </div>
       )}
     </li>

@@ -15,38 +15,38 @@ export const MyCards = () => {
 
   return (
     <>
-      <div>
-        <button
-          onClick={() => {
-            setCreateBandCard(true);
-          }}
-        >
-          Add New Band Card
-        </button>
+      <div className='container-add-buttons'>
+        <div className='container-add-button'>
+          <button
+            onClick={() => {
+              setCreateBandCard(!createBandCard);
+            }}
+          >
+            Add New Band Card
+          </button>
 
-        {createBandCard && (
-          <BandCardForm setCreateBandCard={setCreateBandCard} />
-        )}
+          {createBandCard && (
+            <BandCardForm setCreateBandCard={setCreateBandCard} />
+          )}
+        </div>
+        <div className='container-add-button'>
+          <button
+            onClick={() => {
+              setCreateMusicianCard(!createMusicianCard);
+            }}
+          >
+            Add New Musician Card
+          </button>
+          {createMusicianCard && (
+            <MusicianCardForm setCreateMusicianCard={setCreateMusicianCard} />
+          )}
+        </div>
       </div>
-      <div>
-        <button
-          onClick={() => {
-            setCreateMusicianCard(true);
-          }}
-        >
-          Add New Musician Card
-        </button>
-        {createMusicianCard && (
-          <MusicianCardForm setCreateMusicianCard={setCreateMusicianCard} />
-        )}
-      </div>
-      <h3>Bands</h3>
-      <ul className='cards'>
+
+      <ul className='cards cards-mypage'>
         {myBandCards.length > 0 &&
           myBandCards.map(band => <MyBandCard key={band._id} band={band} />)}
-      </ul>
-      <h3>Musicians</h3>
-      <ul className='cards'>
+
         {myMusicianCards.length > 0 &&
           myMusicianCards.map(musician => (
             <MyMusicianCard key={musician._id} musician={musician} />

@@ -2,6 +2,7 @@
 
 :root {
   --color-dark: rgb(25, 20, 20);
+  --color-dark-semitransparent: rgb(25, 20, 20, 0.5);
   --color-grey: #e4e4e4;
   --color-dark-green: rgb(31, 94, 93);
   --color-primary: rgb(29, 185, 84);
@@ -34,6 +35,7 @@ img {
 h1 {
   padding: 20px 0;
   text-align: center;
+  color: var(--color-secondary);
 }
 h3 {
   padding: 1rem 0;
@@ -47,9 +49,8 @@ h3 {
 
 /* NavBar */
 .nav {
-  background-color: var(--color-iceberg);
   color: var(--color-light);
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -59,13 +60,60 @@ h3 {
   column-gap: 2rem;
 }
 
-/* Home Page */
+.nav-item {
+  color: var(--color-light);
+}
+.nav-item:hover {
+  color: var(--color-secondary);
+}
+.nav-item-selected {
+  background-color: var(--color-dark-semitransparent);
+}
+
+/* Containers */
+.container-mypage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+}
+
+.mypage-right {
+  width: 100%;
+}
+
+.container-card-bottom {
+  position: absolute;
+  bottom: 5px;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container-add-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.container-add-button {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Tabs */
 .tabs {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
-
+.tabs-column {
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: var(--color-dark);
+}
 .tab {
   padding: 0.5rem;
   color: var(--color-light);
@@ -73,15 +121,19 @@ h3 {
   font-size: 1.5rem;
   border-radius: 15px 15px 0 0;
 }
-
 .tab-musicians {
   background-color: var(--color-primary);
+}
+.tab-selected {
+  width: 100%;
+  background-color: var(--color-primary);
+  border-radius: 0 0 0 0;
 }
 
 /* Cards */
 .cards {
   background-color: var(--color-dark);
-  padding: 30px 0;
+  padding: 4rem 1rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -92,10 +144,14 @@ h3 {
 .cards-musicians {
   background-color: var(--color-primary);
 }
+.cards-mypage {
+  background-color: var(--color-dark-green);
+}
 
 .card {
+  position: relative;
   width: 300px;
-  min-height: 400px;
+  min-height: 500px;
   padding: 1rem;
   border: 1px solid #a4a4a4;
   border-radius: 20px;
@@ -126,19 +182,25 @@ h3 {
   padding: 5px;
 }
 
-.fav-apply-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
 /* Log in and Register */
 form {
+  margin: auto;
+  width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  border-radius: 5px;
+}
+
+.form-mypage {
+  background-color: var(--color-dark-semitransparent);
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
 }
 
 label {
@@ -158,22 +220,23 @@ input {
 
 button {
   padding: 10px 10px;
-  background-color: #0077ff;
+  background-color: var(--color-iceberg);
   border: none;
   border-radius: 5px;
-  color: white;
+  color: var(--color-dark);
   font-size: 1rem;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0066cc;
+  background-color: aqua;
 }
 
 .button-add {
+  margin: 15px 0;
   padding: 0;
   background-color: rgb(1, 1, 1, 0);
-  color: #0066cc;
+  color: var(--color-secondary);
 }
 .button-add:hover {
   color: aqua;
@@ -181,9 +244,16 @@ button:hover {
   background-color: rgb(1, 1, 1, 0);
 }
 
+.button-delete:hover {
+  background-color: red;
+  color: var(--color-light);
+}
+
 .button-close {
+  align-self: flex-end;
   cursor: pointer;
   font-size: 1.5rem;
+  color: red;
 }
 
 /* registration */
@@ -196,7 +266,11 @@ button:hover {
 }
 
 /* message (error, warning, success) */
-.message {
-  margin: auto;
+.message-error {
+  margin: 2rem auto;
+  color: red;
+}
+.message-success {
+  margin: 2rem auto;
   color: var(--color-iceberg);
 }

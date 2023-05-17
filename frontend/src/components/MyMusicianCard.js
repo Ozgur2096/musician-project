@@ -3,6 +3,7 @@ import { SelectGenre } from './Select/SelectGenre';
 import { SelectInstrument } from './Select/SelectInstrument';
 import { updateCard } from '../utils/updateCard';
 import { deleteData } from '../utils/deleteData';
+import { MdDelete, MdEdit } from 'react-icons/md';
 
 export const MyMusicianCard = ({ musician }) => {
   const {
@@ -107,9 +108,17 @@ export const MyMusicianCard = ({ musician }) => {
         {isEditing ? (
           <button onClick={handleSave}>Save</button>
         ) : (
-          <div>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+          <div className='container-card-bottom'>
+            <button title='edit' onClick={handleEdit}>
+              <MdEdit />
+            </button>
+            <button
+              title='delete'
+              className='button-delete'
+              onClick={handleDelete}
+            >
+              <MdDelete />
+            </button>
           </div>
         )}
       </div>

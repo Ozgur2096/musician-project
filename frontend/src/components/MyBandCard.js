@@ -3,6 +3,7 @@ import { SelectGenre } from './Select/SelectGenre';
 import { SelectLookingFor } from './Select/SelectLookingFor';
 import { updateCard } from '../utils/updateCard';
 import { deleteData } from '../utils/deleteData';
+import { MdDelete, MdEdit } from 'react-icons/md';
 
 export const MyBandCard = ({ band }) => {
   const { cardId, name, genre, description, looking_for, image_url } = band;
@@ -85,9 +86,17 @@ export const MyBandCard = ({ band }) => {
         {isEditing ? (
           <button onClick={handleSave}>Save</button>
         ) : (
-          <div>
-            <button onClick={handleEdit}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+          <div className='container-card-bottom'>
+            <button title='edit' onClick={handleEdit}>
+              <MdEdit />
+            </button>
+            <button
+              title='delete'
+              className='button-delete'
+              onClick={handleDelete}
+            >
+              <MdDelete />
+            </button>
           </div>
         )}
       </div>

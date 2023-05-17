@@ -4,11 +4,17 @@ import { useContext } from 'react';
 
 export const NavConnectedUser = () => {
   const { handleLogOut } = useContext(GlobalContext);
+
   return (
     <div className='nav-right'>
-      <Link to={'/user/mypage'}>My Page</Link>
-      <Link to={'/user/favorites'}>Favorites</Link>
+      <Link className='nav-item' to={'/user/mypage'}>
+        My Page
+      </Link>
+      <Link className='nav-item' to={'/user/favorites'}>
+        Favorites
+      </Link>
       <Link
+        className='nav-item'
         to={'/'}
         onClick={() => {
           handleLogOut();

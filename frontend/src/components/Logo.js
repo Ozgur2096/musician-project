@@ -5,6 +5,8 @@ import { GlobalContext } from '../context/GlobalState';
 export const Logo = () => {
   const { isLoggedIn } = useContext(GlobalContext);
   return (
-    <Link to={isLoggedIn ? '/user/home/bands' : '/bands'}>Logo + Home</Link>
+    <Link className='nav-item' to={isLoggedIn ? '/user/home/bands' : '/bands'}>
+      Logo + Home
+    </Link>
   );
 };

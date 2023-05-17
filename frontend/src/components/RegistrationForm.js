@@ -6,7 +6,8 @@ export const RegistrationForm = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
 
-  const [successMessage, setSuccessMessage] = useState(false);
+  const [message, setMessage] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -15,7 +16,11 @@ export const RegistrationForm = () => {
       email: email,
     };
     // Make a POST request to the server to save the user data
-    if (password.length > 0 && password === confirmPassword) {
+    if (
+      email.length > 0 &&
+      password.length > 0 &&
+      password === confirmPassword
+    ) {
       fetch('/users/register', {
         method: 'POST',
         headers: {
@@ -26,10 +31,12 @@ export const RegistrationForm = () => {
         .then(response => {
           if (response.ok) {
             console.log('User registration successful!');
-            setSuccessMessage('User registration successful!');
+            setIsError(false);
+            setMessage('User registration successful!');
           } else {
             console.error('User registration failed:', response.status);
-            setSuccessMessage('This email is already connected to an account.');
+            setMessage('This email is already connected to an account.');
+            setIsError(true);
           }
           return response;
         })
@@ -39,7 +46,8 @@ export const RegistrationForm = () => {
           console.error('Error registering user:', error);
         });
     } else {
-      setSuccessMessage('Check your password, please');
+      setMessage('Enter a valid email and check your password, please');
+      setIsError(true);
     }
   };
 
@@ -47,7 +55,7 @@ export const RegistrationForm = () => {
     <div className='registration'>
       <Nav />
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className='form-item'>
           <label htmlFor='email'>Email:</label>
           <input
             type='email'
@@ -56,7 +64,7 @@ export const RegistrationForm = () => {
             onChange={event => setEmail(event.target.value)}
           />
         </div>
-        <div>
+        <div className='form-item'>
           <label htmlFor='password'>Password:</label>
           <input
             type='password'
@@ -65,7 +73,7 @@ export const RegistrationForm = () => {
             onChange={event => setPassword(event.target.value)}
           />
         </div>
-        <div>
+        <div className='form-item'>
           <label htmlFor='confirm-password'>Confirm Password:</label>
           <input
             type='password'
@@ -76,7 +84,11 @@ export const RegistrationForm = () => {
         </div>
         <button type='submit'>Submit</button>
       </form>
-      {successMessage && <div className='message'>{successMessage}</div>}
+      {message && (
+        <div className={isError ? 'message-error' : 'message-success'}>
+          {message}
+        </div>
+      )}
     </div>
   );
 };

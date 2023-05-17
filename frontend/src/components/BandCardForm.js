@@ -83,14 +83,14 @@ export const BandCardForm = ({ setCreateBandCard }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='form-mypage' onSubmit={handleSubmit}>
       <MdClose
         className='button-close'
         onClick={() => {
           setCreateBandCard(false);
         }}
       />
-      <div>
+      <div className='form-item'>
         <label htmlFor='name'>Band Name:</label>
         <input
           type='text'
@@ -99,14 +99,14 @@ export const BandCardForm = ({ setCreateBandCard }) => {
           value={bandData.name}
           onChange={e => handleInputChange('name', e.target.value)}
         />
-        {errors.name && <span>{errors.name}</span>}
+        {errors.name && <span className='message-error'>{errors.name}</span>}
       </div>
-      <div>
+      <div className='form-item'>
         <label htmlFor='genre'>Genre:</label>
         <SelectGenre handleInputChange={handleInputChange} data={bandData} />
-        {errors.genre && <span>{errors.genre}</span>}
+        {errors.genre && <span className='message-error'>{errors.genre}</span>}
       </div>
-      <div>
+      <div className='form-item'>
         <label htmlFor='description'>Description:</label>
         <textarea
           id='description'
@@ -114,15 +114,19 @@ export const BandCardForm = ({ setCreateBandCard }) => {
           value={bandData.description}
           onChange={e => handleInputChange('description', e.target.value)}
         />
-        {errors.description && <span>{errors.description}</span>}
+        {errors.description && (
+          <span className='message-error'>{errors.description}</span>
+        )}
       </div>
-      <div>
+      <div className='form-item'>
         <label htmlFor='looking_for'>Looking For:</label>
         <SelectLookingFor
           handleInputChange={handleInputChange}
           data={bandData}
         />
-        {errors.looking_for && <span>{errors.looking_for}</span>}
+        {errors.looking_for && (
+          <span className='message-error'>{errors.looking_for}</span>
+        )}
       </div>
       <button className='button-add' type='submit'>
         <MdAddBox className='md-icons' />

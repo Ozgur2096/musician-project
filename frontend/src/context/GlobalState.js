@@ -44,10 +44,12 @@ export const GlobalProvider = ({ children }) => {
 
   // isLoggedIn and get user ID and LogOut
   const handleLoggedIn = userId => {
-    setIsLoggedIn(true);
-    setUserId(userId);
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('userId', userId);
+    if (userId) {
+      setIsLoggedIn(true);
+      setUserId(userId);
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('userId', userId);
+    }
   };
   const handleLogOut = () => {
     updateFavorites(userId, favoriteIds);

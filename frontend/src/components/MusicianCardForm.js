@@ -88,14 +88,14 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='form-mypage' onSubmit={handleSubmit}>
       <MdClose
         className='button-close'
         onClick={() => {
           setCreateMusicianCard(false);
         }}
       />
-      <div>
+      <div className='form-item'>
         <label htmlFor='firstName'>First Name:</label>
         <input
           type='text'
@@ -104,9 +104,11 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
           value={musicianData.firstName}
           onChange={e => handleInputChange('firstName', e.target.value)}
         />
-        {errors.firstName && <span>{errors.firstName}</span>}
+        {errors.firstName && (
+          <span className='message-error'>{errors.firstName}</span>
+        )}
       </div>
-      <div>
+      <div className='form-item'>
         <label htmlFor='lastName'>Last Name:</label>
         <input
           type='text'
@@ -115,26 +117,30 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
           value={musicianData.lastName}
           onChange={e => handleInputChange('lastName', e.target.value)}
         />
-        {errors.lastName && <span>{errors.lastName}</span>}
+        {errors.lastName && (
+          <span className='message-error'>{errors.lastName}</span>
+        )}
       </div>
-      <div>
+      <div className='form-item'>
         <label htmlFor='instrument'>Instrument:</label>
         <SelectInstrument
           handleInputChange={handleInputChange}
           data={musicianData}
         />
-        {errors.instrument && <span>{errors.instrument}</span>}
+        {errors.instrument && (
+          <span className='message-error'>{errors.instrument}</span>
+        )}
       </div>
 
-      <div>
+      <div className='form-item'>
         <label htmlFor='genre'>Genre:</label>
         <SelectGenre
           handleInputChange={handleInputChange}
           data={musicianData}
         />
-        {errors.genre && <span>{errors.genre}</span>}
+        {errors.genre && <span className='message-error'>{errors.genre}</span>}
       </div>
-      <div>
+      <div className='form-item'>
         <label htmlFor='description'>Description:</label>
         <textarea
           id='description'
@@ -142,7 +148,9 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
           value={musicianData.description}
           onChange={e => handleInputChange('description', e.target.value)}
         />
-        {errors.description && <span>{errors.description}</span>}
+        {errors.description && (
+          <span className='message-error'>{errors.description}</span>
+        )}
       </div>
       <button className='button-add' type='submit'>
         <MdAddBox className='md-icons' />

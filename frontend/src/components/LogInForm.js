@@ -2,12 +2,14 @@ import React, { useState, useContext } from 'react';
 import { Nav } from './Nav';
 import { Navigate } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalState';
+import { Message } from './Message';
 
 export const LogInForm = () => {
   const { handleLoggedIn } = useContext(GlobalContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isErrorMessage, setIsErrorMessage] = useState(false);
 
   const [userId, setUserId] = useState('');
 
@@ -29,6 +31,7 @@ export const LogInForm = () => {
         if (response.ok) {
           console.log('User login successful!');
         } else {
+          setIsErrorMessage(true);
           console.error('User login failed:', response.status);
         }
         return response;
@@ -48,7 +51,7 @@ export const LogInForm = () => {
     <>
       <Nav />
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className='form-item'>
           <label htmlFor='email'>Email:</label>
           <input
             type='email'
@@ -57,7 +60,7 @@ export const LogInForm = () => {
             onChange={event => setEmail(event.target.value)}
           />
         </div>
-        <div>
+        <div className='form-item'>
           <label htmlFor='password'>Password:</label>
           <input
             type='password'
@@ -67,6 +70,12 @@ export const LogInForm = () => {
           />
         </div>
         <button type='submit'>Log In</button>
+        {isErrorMessage && (
+          <Message
+            className='message-error'
+            text={'Please check your email and password'}
+          />
+        )}
       </form>
       {userId && <Navigate to='/user/home' replace={true} />}
     </>

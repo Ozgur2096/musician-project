@@ -6,6 +6,7 @@ import { ApplyButton } from './ApplyButton';
 export const BandCard = ({ band }) => {
   const { isLoggedIn } = useContext(GlobalContext);
   const { _id, name, genre, description, looking_for, image_url } = band;
+
   return (
     <li className='card'>
       <img src={image_url} alt='musician' />
@@ -21,9 +22,11 @@ export const BandCard = ({ band }) => {
         ))}
       </div>
       {isLoggedIn && (
-        <div className='fav-apply-container'>
-          <Heart cardId={_id} />
-          <ApplyButton />
+        <div>
+          <div className='container-card-bottom'>
+            <Heart cardId={_id} />
+            <ApplyButton card={band} />
+          </div>
         </div>
       )}
     </li>
