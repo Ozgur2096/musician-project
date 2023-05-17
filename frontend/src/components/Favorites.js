@@ -13,8 +13,8 @@ export const Favorites = () => {
 
   return (
     <div>
-      <h1>Favorites</h1>
       <Nav />
+      <h1>Favorites</h1>
       <h3>Bands</h3>
       <ul className='cards'>
         {favBands.length > 0 ? (
@@ -26,7 +26,7 @@ export const Favorites = () => {
         )}
       </ul>
       <h3>Musicians</h3>
-      <ul className='cards'>
+      <ul className='cards cards-musicians'>
         {favMusicians.length > 0 ? (
           favMusicians.map(musician => (
             <MusicianCard key={musician._id} musician={musician} />

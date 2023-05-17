@@ -11,7 +11,7 @@ export const Tabs = () => {
       </Link>
       <Link
         to={isLoggedIn ? '/user/home/musicians' : '/musicians'}
-        className='tab'
+        className='tab tab-musicians'
       >
         Musicians
       </Link>

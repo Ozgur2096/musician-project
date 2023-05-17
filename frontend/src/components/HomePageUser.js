@@ -5,8 +5,8 @@ import { Tabs } from './Tabs';
 export const HomePageUser = () => {
   return (
     <>
-      <h1>Welcome to your personal page</h1>
       <Nav />
+      <h1>Welcome to your personal page</h1>
       <Tabs />
       <Outlet />
     </>

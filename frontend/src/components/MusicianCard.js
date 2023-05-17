@@ -16,7 +16,7 @@ export const MusicianCard = ({ musician }) => {
   } = musician;
 
   return (
-    <li className='card'>
+    <li className='card card-musician'>
       <img src={image_url} alt='musician' />
       <div>
         {firstName} {lastName}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { SelectGenre } from './Select/SelectGenre';
 import { SelectInstrument } from './Select/SelectInstrument';
 import { updateCard } from '../utils/updateCard';
+import { deleteData } from '../utils/deleteData';
 
 export const MyMusicianCard = ({ musician }) => {
   const {
@@ -27,6 +28,10 @@ export const MyMusicianCard = ({ musician }) => {
   const handleEdit = () => {
     setIsEditing(true);
   };
+  const handleDelete = () => {
+    deleteData(`/musicians/${cardId}`);
+    window.location.reload();
+  };
 
   const handleSave = () => {
     const { firstName, lastName, instrument, genre, description } = editedData;
@@ -49,7 +54,7 @@ export const MyMusicianCard = ({ musician }) => {
   };
 
   return (
-    <li className='card'>
+    <li className='card card-musician'>
       <img src={image_url} alt='musician' />
       {isEditing ? (
         <>
@@ -102,7 +107,10 @@ export const MyMusicianCard = ({ musician }) => {
         {isEditing ? (
           <button onClick={handleSave}>Save</button>
         ) : (
-          <button onClick={handleEdit}>Edit</button>
+          <div>
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
+          </div>
         )}
       </div>
     </li>

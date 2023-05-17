@@ -4,7 +4,7 @@ import React from 'react';
 
 export const NavDisconnectedUser = () => {
   return (
-    <div className='nav-disconnected-user'>
+    <div className='nav-right'>
       <Link to={'/login'}>Log in</Link>
       <Link to={'/register'}>Register</Link>
     </div>

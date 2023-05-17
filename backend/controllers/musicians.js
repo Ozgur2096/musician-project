@@ -3,11 +3,7 @@ import { findMusicians } from '../database-functions/musician/findMusicians.js';
 import { insertMusician } from '../database-functions/musician/insertMusician.js';
 import { findMusician } from '../database-functions/musician/findMusician.js';
 import { updateMusicianCard } from '../database-functions/musician/updateMusicianCard.js';
-
-let users = [
-  { firstName: 'John', lastName: 'Doe', age: 30 },
-  { firstName: 'Jane', lastName: 'Doe', age: 29 },
-];
+import { deleteMusicianCard } from '../database-functions/musician/deleteMusicianCard.js';
 
 export const getMusicians = async (req, res) => {
   const results = await findMusicians();
@@ -47,10 +43,10 @@ export const updateMusician = async (req, res) => {
   res.send({ message: 'Card updated' });
 };
 
-export const deleteMusician = (req, res) => {
-  const { id } = req.params;
-  users = users.filter(user => user.id !== id);
-  res.send(users);
+export const deleteMusician = async (req, res) => {
+  const { cardId } = req.params;
+  await deleteMusicianCard(cardId);
+  res.send({ message: 'Card deleted' });
 };
 
 // this function is for presentation

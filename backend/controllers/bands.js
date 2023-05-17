@@ -3,6 +3,7 @@ import { findBands } from '../database-functions/band/findBands.js';
 import { insertBand } from '../database-functions/band/insertBand.js';
 import { findBand } from '../database-functions/band/findBand.js';
 import { updateBandCard } from '../database-functions/band/updateBandCard.js';
+import { deleteBandCard } from '../database-functions/band/deleteBandCard.js';
 
 let users = [
   { firstName: 'John', lastName: 'Doe', age: 30 },
@@ -45,10 +46,10 @@ export const updateBand = async (req, res) => {
   res.send({ message: 'Card updated' });
 };
 
-export const deleteBand = (req, res) => {
-  const { id } = req.params;
-  users = users.filter(user => user.id !== id);
-  res.send(users);
+export const deleteBand = async (req, res) => {
+  const { cardId } = req.params;
+  await deleteBandCard(cardId);
+  res.send({ message: 'Card deleted' });
 };
 
 // this function is for presentation

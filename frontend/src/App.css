@@ -1,10 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap');
+
+:root {
+  --color-dark: rgb(25, 20, 20);
+  --color-grey: #e4e4e4;
+  --color-dark-green: rgb(31, 94, 93);
+  --color-primary: rgb(29, 185, 84);
+  --color-secondary: rgb(30, 215, 96);
+  --color-iceberg: rgb(204, 225, 244);
+  --color-light: #ffffff;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
-.App {
-  text-align: center;
+
+body {
+  background-color: var(--color-dark-green);
+  color: var(--color-iceberg);
 }
 
 a {
@@ -16,6 +31,15 @@ li {
 img {
   border-style: none;
 }
+h1 {
+  padding: 20px 0;
+  text-align: center;
+}
+h3 {
+  padding: 1rem 0;
+  margin: auto;
+  text-align: center;
+}
 
 .md-icons {
   font-size: 2rem;
@@ -23,29 +47,89 @@ img {
 
 /* NavBar */
 .nav {
-  padding: 2rem;
+  background-color: var(--color-iceberg);
+  color: var(--color-light);
+  padding: 2rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.nav-disconnected-user {
+.nav-right {
   display: flex;
   column-gap: 2rem;
 }
 
 /* Home Page */
 .tabs {
-  margin-bottom: 2rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  column-gap: 2rem;
+  justify-content: flex-start;
 }
 
 .tab {
-  color: black;
-  background-color: azure;
-  font-size: 2rem;
+  padding: 0.5rem;
+  color: var(--color-light);
+  background-color: var(--color-dark);
+  font-size: 1.5rem;
+  border-radius: 15px 15px 0 0;
+}
+
+.tab-musicians {
+  background-color: var(--color-primary);
+}
+
+/* Cards */
+.cards {
+  background-color: var(--color-dark);
+  padding: 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.cards-musicians {
+  background-color: var(--color-primary);
+}
+
+.card {
+  width: 300px;
+  min-height: 400px;
+  padding: 1rem;
+  border: 1px solid #a4a4a4;
+  border-radius: 20px;
+  background-color: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1rem;
+}
+
+.card-musician {
+  background-color: var(--color-dark);
+  color: var(--color-iceberg);
+}
+
+.card img {
+  width: 150px;
+  height: 150px;
+  padding-bottom: 5px;
+  border-radius: 50%;
+}
+
+.instrument {
+  padding: 5px;
+}
+.searching-for {
+  padding: 5px;
+}
+
+.fav-apply-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* Log in and Register */
@@ -102,50 +186,6 @@ button:hover {
   font-size: 1.5rem;
 }
 
-/* Cards */
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.card {
-  width: 300px;
-  min-height: 400px;
-  padding: 1rem;
-  border: 1px solid #a4a4a4;
-  border-radius: 20px;
-  background-color: aquamarine;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  row-gap: 1rem;
-}
-
-.card img {
-  width: 150px;
-  height: 150px;
-
-  padding-bottom: 5px;
-  border-radius: 50%;
-}
-
-.instrument {
-  padding: 5px;
-}
-.searching-for {
-  padding: 5px;
-}
-
-.fav-apply-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
 /* registration */
 .registration {
   display: flex;
@@ -158,4 +198,5 @@ button:hover {
 /* message (error, warning, success) */
 .message {
   margin: auto;
+  color: var(--color-iceberg);
 }

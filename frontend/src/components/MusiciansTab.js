@@ -6,7 +6,7 @@ export const MusiciansTab = () => {
   const { musicians } = useContext(GlobalContext);
 
   return (
-    <ul className='cards'>
+    <ul className='cards cards-musicians'>
       {musicians.length > 0 ? (
         musicians.map(musician => (
           <MusicianCard key={musician._id} musician={musician} />

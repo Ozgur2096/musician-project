@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { SelectGenre } from './Select/SelectGenre';
 import { SelectLookingFor } from './Select/SelectLookingFor';
 import { updateCard } from '../utils/updateCard';
+import { deleteData } from '../utils/deleteData';
 
 export const MyBandCard = ({ band }) => {
   const { cardId, name, genre, description, looking_for, image_url } = band;
@@ -17,6 +18,10 @@ export const MyBandCard = ({ band }) => {
 
   const handleEdit = () => {
     setIsEditing(true);
+  };
+  const handleDelete = () => {
+    deleteData(`/bands/${cardId}`);
+    window.location.reload();
   };
 
   const handleSave = () => {
@@ -80,7 +85,10 @@ export const MyBandCard = ({ band }) => {
         {isEditing ? (
           <button onClick={handleSave}>Save</button>
         ) : (
-          <button onClick={handleEdit}>Edit</button>
+          <div>
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
+          </div>
         )}
       </div>
     </li>
