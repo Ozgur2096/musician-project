@@ -67,8 +67,8 @@ export const GlobalProvider = ({ children }) => {
 
   // fetch data from the database and send
   useEffect(() => {
-    fetchData('/bands', setBands);
-    fetchData('/musicians', setMusicians);
+    fetchData('https://musician.onrender.com/bands', setBands);
+    fetchData('https://musician.onrender.com/musicians', setMusicians);
   }, []);
 
   return (
