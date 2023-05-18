@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import bandRoutes from './routes/bands.js';
 import musicianRoutes from './routes/musicians.js';
 import userRoutes from './routes/users.js';
@@ -8,6 +9,7 @@ export const client = new MongoClient(
 );
 
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
