@@ -11,9 +11,10 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
     userId,
     firstName: '',
     lastName: '',
-    instrument: '',
+    instrument: [],
     genre: '',
     description: '',
+    userApplied: [],
   });
 
   const [errors, setErrors] = useState({});
@@ -141,7 +142,7 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
         {errors.genre && <span className='message-error'>{errors.genre}</span>}
       </div>
       <div className='form-item'>
-        <label htmlFor='description'>Description:</label>
+        <label htmlFor='description'>Tell something:</label>
         <textarea
           id='description'
           name='description'

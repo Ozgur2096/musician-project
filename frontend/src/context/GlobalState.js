@@ -7,6 +7,7 @@ export const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState('');
+  const [userEmail, setUserEmail] = useState('');
 
   const [musicians, setMusicians] = useState([]);
   const [bands, setBands] = useState([]);
@@ -17,9 +18,11 @@ export const GlobalProvider = ({ children }) => {
   useEffect(() => {
     const storedLoggedIn = localStorage.getItem('isLoggedIn');
     const storedUserId = localStorage.getItem('userId');
+    const storedEmail = localStorage.getItem('userEmail');
     if (storedLoggedIn === 'true' && storedUserId) {
       setIsLoggedIn(true);
       setUserId(storedUserId);
+      setUserEmail(storedEmail);
     }
   }, []);
 
@@ -43,12 +46,14 @@ export const GlobalProvider = ({ children }) => {
   }
 
   // isLoggedIn and get user ID and LogOut
-  const handleLoggedIn = userId => {
+  const handleLoggedIn = (userId, userEmail) => {
     if (userId) {
       setIsLoggedIn(true);
       setUserId(userId);
+      setUserEmail(userEmail);
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('userId', userId);
+      localStorage.setItem('userEmail', userEmail);
     }
   };
   const handleLogOut = () => {
@@ -57,6 +62,7 @@ export const GlobalProvider = ({ children }) => {
     setIsLoggedIn(false);
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem(userId);
+    localStorage.removeItem(userEmail);
   };
 
   // fetch data from the database and send
@@ -73,6 +79,7 @@ export const GlobalProvider = ({ children }) => {
         handleLoggedIn,
         isLoggedIn,
         userId,
+        userEmail,
         handleLogOut,
         favoriteIds,
         handleFavoriteId,

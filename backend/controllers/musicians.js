@@ -15,9 +15,17 @@ export const createMusician = async (req, res) => {
 
   const musician = await req.body;
   console.log(musician);
-  const { userId, firstName, lastName, instrument, genre, description } =
-    musician;
+  const {
+    userId,
+    firstName,
+    lastName,
+    instrument,
+    genre,
+    description,
+    userApplied,
+  } = musician;
   await insertMusician({
+    cardType: 'musician',
     cardId: uuidv4(),
     userId,
     firstName,
@@ -26,6 +34,7 @@ export const createMusician = async (req, res) => {
     genre,
     description,
     image_url: avatarUrl,
+    userApplied,
   });
   res.send('A new musician card created');
 };

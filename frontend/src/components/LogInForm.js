@@ -39,7 +39,7 @@ export const LogInForm = () => {
       .then(response => response.json())
       .then(data => {
         setUserId(data.userId);
-        handleLoggedIn(data.userId);
+        handleLoggedIn(data.userId, data.email);
         return data;
       })
       .catch(error => {

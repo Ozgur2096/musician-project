@@ -27,7 +27,9 @@ export const checkUser = async (req, res) => {
   const backEndUser = await checkUserAndPassword(frontEndUser.email);
   if (backEndUser) {
     frontEndUser.password === backEndUser.password
-      ? res.status(200).send({ userId: backEndUser.userId })
+      ? res
+          .status(200)
+          .send({ userId: backEndUser.userId, email: backEndUser.email })
       : res
           .status(400)
           .send({ message: 'Please check your email and password' });

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import { BandCardForm } from './BandCardForm';
 import { MusicianCardForm } from './MusicianCardForm';

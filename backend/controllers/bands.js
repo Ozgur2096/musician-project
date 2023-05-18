@@ -5,11 +5,6 @@ import { findBand } from '../database-functions/band/findBand.js';
 import { updateBandCard } from '../database-functions/band/updateBandCard.js';
 import { deleteBandCard } from '../database-functions/band/deleteBandCard.js';
 
-let users = [
-  { firstName: 'John', lastName: 'Doe', age: 30 },
-  { firstName: 'Jane', lastName: 'Doe', age: 29 },
-];
-
 export const getBands = async (req, res) => {
   const results = await findBands();
   res.send(results);
@@ -20,8 +15,9 @@ export const createBand = async (req, res) => {
 
   const band = await req.body;
   console.log(band);
-  const { userId, name, genre, description, looking_for } = band;
+  const { userId, name, genre, description, looking_for, userApplied } = band;
   await insertBand({
+    cardType: 'band',
     cardId: uuidv4(),
     userId,
     name,
@@ -29,6 +25,7 @@ export const createBand = async (req, res) => {
     description,
     looking_for,
     image_url: avatarUrl,
+    userApplied,
   });
   res.send('A new band card created');
 };

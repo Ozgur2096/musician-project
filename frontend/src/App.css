@@ -103,6 +103,19 @@ h3 {
   align-items: center;
 }
 
+.container-notifications {
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.container-notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
 /* Tabs */
 .tabs {
   display: flex;
@@ -273,4 +286,24 @@ button:hover {
 .message-success {
   margin: 2rem auto;
   color: var(--color-iceberg);
+}
+
+/* Apply Window */
+.apply-window {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  background-color: var(--color-iceberg);
+  color: var(--color-dark-green);
+  padding: 5px;
+}
+
+/* Notifications, applicant */
+.applicant {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: var(--color-dark-semitransparent);
 }

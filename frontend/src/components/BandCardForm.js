@@ -14,6 +14,7 @@ export const BandCardForm = ({ setCreateBandCard }) => {
     genre: '',
     description: '',
     looking_for: [],
+    userApplied: [],
   });
 
   const [errors, setErrors] = useState({});
@@ -107,7 +108,7 @@ export const BandCardForm = ({ setCreateBandCard }) => {
         {errors.genre && <span className='message-error'>{errors.genre}</span>}
       </div>
       <div className='form-item'>
-        <label htmlFor='description'>Description:</label>
+        <label htmlFor='description'>Tell something:</label>
         <textarea
           id='description'
           name='description'

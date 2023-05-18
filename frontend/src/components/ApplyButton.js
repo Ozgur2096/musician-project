@@ -1,16 +1,39 @@
 import { GlobalContext } from '../context/GlobalState';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { ApplyWindow } from './ApplyWindow';
 
 export const ApplyButton = ({ card }) => {
-  const { userId } = useContext(GlobalContext);
-  return (
-    <button
-      onClick={() => {
-        console.log(card);
-        console.log(userId);
-      }}
-    >
-      Apply
-    </button>
+  const { userId, userEmail } = useContext(GlobalContext);
+  const { userApplied } = card;
+
+  const [openApplyWindow, setOpenApplyWindow] = useState(false);
+  const [isApplied, setIsApplied] = useState(
+    userApplied.some(user => user.userEmail === userEmail)
   );
+
+  if (isApplied) {
+    return <div>Applied</div>;
+  } else {
+    return (
+      <>
+        <button
+          onClick={() => {
+            console.log(card);
+            console.log(userId);
+            console.log(userEmail);
+            setOpenApplyWindow(true);
+          }}
+        >
+          Apply
+        </button>
+        {openApplyWindow && (
+          <ApplyWindow
+            card={card}
+            setOpenApplyWindow={setOpenApplyWindow}
+            setIsApplied={setIsApplied}
+          />
+        )}
+      </>
+    );
+  }
 };
