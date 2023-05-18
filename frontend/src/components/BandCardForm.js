@@ -55,7 +55,7 @@ export const BandCardForm = ({ setCreateBandCard }) => {
     e.preventDefault();
 
     if (validateForm()) {
-      fetch('/bands', {
+      fetch('https://musician.onrender.com/bands', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

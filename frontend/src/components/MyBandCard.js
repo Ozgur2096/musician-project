@@ -21,13 +21,18 @@ export const MyBandCard = ({ band }) => {
     setIsEditing(true);
   };
   const handleDelete = () => {
-    deleteData(`/bands/${cardId}`);
+    deleteData(`https://musician.onrender.com/bands/${cardId}`);
     window.location.reload();
   };
 
   const handleSave = () => {
     const { name, genre, description, looking_for } = editedData;
-    updateCard(`/bands/${cardId}`, { name, genre, description, looking_for });
+    updateCard(`https://musician.onrender.com/bands/${cardId}`, {
+      name,
+      genre,
+      description,
+      looking_for,
+    });
     window.location.reload();
     setIsEditing(false);
   };

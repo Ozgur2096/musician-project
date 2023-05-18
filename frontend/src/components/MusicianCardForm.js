@@ -60,7 +60,7 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
     e.preventDefault();
 
     if (validateForm()) {
-      fetch('/musicians', {
+      fetch('https://musician.onrender.com/musicians', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

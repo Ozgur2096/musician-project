@@ -30,13 +30,13 @@ export const MyMusicianCard = ({ musician }) => {
     setIsEditing(true);
   };
   const handleDelete = () => {
-    deleteData(`/musicians/${cardId}`);
+    deleteData(`https://musician.onrender.com/musicians/${cardId}`);
     window.location.reload();
   };
 
   const handleSave = () => {
     const { firstName, lastName, instrument, genre, description } = editedData;
-    updateCard(`/musicians/${cardId}`, {
+    updateCard(`https://musician.onrender.com/musicians/${cardId}`, {
       firstName,
       lastName,
       instrument,

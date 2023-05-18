@@ -20,7 +20,7 @@ export const LogInForm = () => {
       password,
     };
     // Make a POST request to the server to check if the user credentials are valid
-    fetch('/users/login', {
+    fetch('https://musician.onrender.com/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

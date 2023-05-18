@@ -21,7 +21,7 @@ export const RegistrationForm = () => {
       password.length > 0 &&
       password === confirmPassword
     ) {
-      fetch('/users/register', {
+      fetch('https://musician.onrender.com/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

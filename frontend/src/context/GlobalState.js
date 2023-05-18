@@ -29,7 +29,7 @@ export const GlobalProvider = ({ children }) => {
   // Favorite Ids
   useEffect(() => {
     if (userId) {
-      fetch(`/users/favorites/${userId}`)
+      fetch(`https://musician.onrender.com/users/favorites/${userId}`)
         .then(response => response.json())
         .then(result => {
           setFavoriteIds([...result.favorites]);
