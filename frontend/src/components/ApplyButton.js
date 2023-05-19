@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { ApplyWindow } from './ApplyWindow';
 
 export const ApplyButton = ({ card }) => {
-  const { userId, userEmail } = useContext(GlobalContext);
+  const { userEmail } = useContext(GlobalContext);
   const { userApplied } = card;
 
   const [openApplyWindow, setOpenApplyWindow] = useState(false);
