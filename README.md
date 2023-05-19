@@ -1,2 +1,35 @@
 # musician-project
-https://extraordinary-kleicha-630910.netlify.app
+
+
+
+## Demo
+
+[https://extraordinary-kleicha-630910.netlify.app]
+
+## Structure
+
+```
+public
+src
+└── 
+  └── 
+  └── 
+  └── 
+└── 
+  └── 
+  └── 
+  └── 
+└── 
+  └── 
+  └── 
+  └── 
+└── 
+  └── 
+  └── 
+  └── 
+└── 
+└── 
+└── 
+
+
+
