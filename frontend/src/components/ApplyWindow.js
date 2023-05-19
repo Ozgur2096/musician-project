@@ -10,7 +10,9 @@ export const ApplyWindow = ({ card, setOpenApplyWindow, setIsApplied }) => {
   const [messageToCardOwner, setMessageToCardOwner] = useState('Hi!');
 
   const url =
-    cardType === 'musician' ? `/musicians/${cardId}` : `/bands/${cardId}`;
+    cardType === 'musician'
+      ? `https://musician.onrender.com/musicians/${cardId}`
+      : `https://musician.onrender.com/bands/${cardId}`;
 
   const handleApproveClick = () => {
     updateCard(url, {
