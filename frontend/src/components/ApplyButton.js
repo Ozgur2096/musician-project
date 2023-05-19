@@ -18,9 +18,6 @@ export const ApplyButton = ({ card }) => {
       <>
         <button
           onClick={() => {
-            console.log(card);
-            console.log(userId);
-            console.log(userEmail);
             setOpenApplyWindow(true);
           }}
         >

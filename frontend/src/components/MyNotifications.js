@@ -8,8 +8,6 @@ export const MyNotifications = () => {
   const cards = [...bands, ...musicians].filter(
     card => userId === card.userId && card.userApplied.length > 0
   );
-
-  console.log(cards);
   return (
     <div className='container-notifications'>
       {cards.map(card => {

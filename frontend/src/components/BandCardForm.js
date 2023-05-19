@@ -79,7 +79,6 @@ export const BandCardForm = ({ setCreateBandCard }) => {
         .catch(error => {
           console.error('Error:', error);
         });
-      console.log(bandData);
     }
   };
 

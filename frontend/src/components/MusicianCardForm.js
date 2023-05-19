@@ -84,7 +84,6 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
         .catch(error => {
           console.error('Error:', error);
         });
-      console.log(musicianData);
     }
   };
 
