@@ -23,15 +23,15 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<HomePage />}>
-            <Route path='bands' element={<BandsTab />}></Route>
-            <Route path='musicians' element={<MusiciansTab />}></Route>
+            <Route path='bands' element={<BandsTab />} />
+            <Route path='musicians' element={<MusiciansTab />} />
             <Route path='/' element={<Navigate to='/bands' replace />} />
           </Route>
           <Route path='/register' element={<RegistrationForm />} />
-          <Route path='/login' element={<LogInForm />}></Route>
+          <Route path='/login' element={<LogInForm />} />
           <Route path='/user/home/' element={<HomePageUser />}>
-            <Route path='bands' element={<BandsTab />}></Route>
-            <Route path='musicians' element={<MusiciansTab />}></Route>
+            <Route path='bands' element={<BandsTab />} />
+            <Route path='musicians' element={<MusiciansTab />} />
             <Route
               path='/user/home/'
               element={<Navigate to='/user/home/bands' replace />}
@@ -46,8 +46,8 @@ function App() {
             />
           </Route>
           <Route path='/user/favorites/' element={<Favorites />}>
-            <Route path='bands' element={<BandsTab />}></Route>
-            <Route path='musicians' element={<MusiciansTab />}></Route>
+            <Route path='bands' element={<BandsTab />} />
+            <Route path='musicians' element={<MusiciansTab />} />
           </Route>
         </Routes>
       </Router>
