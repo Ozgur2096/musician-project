@@ -3,7 +3,7 @@ import { GlobalContext } from '../context/GlobalState';
 import { MdAddBox, MdClose } from 'react-icons/md';
 import { SelectGenre } from './Select/SelectGenre';
 import { SelectLookingFor } from './Select/SelectLookingFor';
-import { fetchRandomUser } from '../utils/fetchRandomUser';
+// import { fetchRandomUser } from '../utils/fetchRandomUser';
 import { createOrUpdateCard } from '../utils/createOrUpdateCard';
 
 export const BandCardForm = ({ setCreateBandCard }) => {
