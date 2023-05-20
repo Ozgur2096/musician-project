@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { SelectGenre } from './Select/SelectGenre';
 import { SelectLookingFor } from './Select/SelectLookingFor';
-import { updateCard } from '../utils/updateCard';
+import { createOrUpdateCard } from '../utils/createOrUpdateCard';
 import { deleteData } from '../utils/deleteData';
 import { MdDelete, MdEdit } from 'react-icons/md';
 
@@ -27,12 +27,16 @@ export const MyBandCard = ({ band }) => {
 
   const handleSave = () => {
     const { name, genre, description, looking_for } = editedData;
-    updateCard(`https://musician.onrender.com/bands/${cardId}`, {
-      name,
-      genre,
-      description,
-      looking_for,
-    });
+    createOrUpdateCard(
+      `https://musician.onrender.com/bands/${cardId}`,
+      {
+        name,
+        genre,
+        description,
+        looking_for,
+      },
+      'PATCH'
+    );
     window.location.reload();
     setIsEditing(false);
   };

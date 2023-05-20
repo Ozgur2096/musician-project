@@ -1,6 +1,6 @@
 import { GlobalContext } from '../context/GlobalState';
 import { useContext, useState } from 'react';
-import { updateCard } from '../utils/updateCard';
+import { createOrUpdateCard } from '../utils/createOrUpdateCard';
 import { MdClose, MdDone } from 'react-icons/md';
 
 export const ApplyWindow = ({ card, setOpenApplyWindow, setIsApplied }) => {
@@ -15,12 +15,16 @@ export const ApplyWindow = ({ card, setOpenApplyWindow, setIsApplied }) => {
       : `https://musician.onrender.com/bands/${cardId}`;
 
   const handleApproveClick = () => {
-    updateCard(url, {
-      userApplied: [
-        ...userApplied,
-        { userId, userEmail, message: messageToCardOwner },
-      ],
-    });
+    createOrUpdateCard(
+      url,
+      {
+        userApplied: [
+          ...userApplied,
+          { userId, userEmail, message: messageToCardOwner },
+        ],
+      },
+      'PATCH'
+    );
   };
   return (
     <div className='apply-window'>
