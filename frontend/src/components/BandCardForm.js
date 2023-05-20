@@ -53,31 +53,34 @@ export const BandCardForm = ({ setCreateBandCard }) => {
     }));
   };
 
-  async function createCard() {
-    const image_url = await fetchRandomUser();
-    const data = { ...bandData, image_url };
-    const response = await createOrUpdateCard(
-      'https://musician.onrender.com/bands',
-      data,
-      'POST'
-    );
+  // async function createCard() {
+  //   const image_url = await fetchRandomUser();
+  //   const data = { ...bandData, image_url };
+  //   const response = await
 
-    if (response.ok) {
-      setSuccessMessage('A new band card created!');
-    } else {
-      setSuccessMessage('Something went wrong!');
-    }
-  }
+  // }
   const handleSubmit = e => {
     e.preventDefault();
 
     if (validateForm()) {
-      createCard().then(
-        setTimeout(() => {
-          setCreateBandCard(false);
-          window.location.reload(); // Refresh the page
-        }, 2500)
-      );
+      createOrUpdateCard(
+        'https://musician.onrender.com/bands',
+        bandData,
+        'POST'
+      )
+        .then(response => {
+          if (response.ok) {
+            setSuccessMessage('A new band card created!');
+          } else {
+            setSuccessMessage('Something went wrong!');
+          }
+        })
+        .then(
+          setTimeout(() => {
+            setCreateBandCard(false);
+            window.location.reload(); // Refresh the page
+          }, 2500)
+        );
     }
   };
 
