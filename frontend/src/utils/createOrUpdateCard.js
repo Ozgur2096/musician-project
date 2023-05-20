@@ -7,7 +7,8 @@ export async function createOrUpdateCard(url, updatedData, method) {
     body: JSON.stringify(updatedData),
   };
   try {
-    await fetch(url, options);
+    const response = await fetch(url, options);
+    return response;
   } catch (e) {
     console.error(e);
   }

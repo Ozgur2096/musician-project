@@ -77,6 +77,29 @@ export const BandCardForm = ({ setCreateBandCard }) => {
     }
 
     if (validateForm()) {
+<<<<<<< HEAD
+=======
+      async function createCard() {
+        const image_url = await fetchRandomUser();
+        const data = { ...bandData, image_url };
+        const response = await createOrUpdateCard(
+          'https://musician.onrender.com/bands',
+          data,
+          'POST'
+        );
+
+        if (response.ok) {
+          setSuccessMessage('A new band card created!');
+        } else {
+          setSuccessMessage('Something went wrong!');
+        }
+
+        setTimeout(() => {
+          setCreateBandCard(false);
+          window.location.reload(); // Refresh the page
+        }, 2500);
+      }
+>>>>>>> 6fa97997cbf942217a700460b6d4fddb836e4012
       createCard();
     }
   };
