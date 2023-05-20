@@ -77,8 +77,6 @@ export const BandCardForm = ({ setCreateBandCard }) => {
     }
 
     if (validateForm()) {
-<<<<<<< HEAD
-=======
       async function createCard() {
         const image_url = await fetchRandomUser();
         const data = { ...bandData, image_url };
@@ -99,7 +97,6 @@ export const BandCardForm = ({ setCreateBandCard }) => {
           window.location.reload(); // Refresh the page
         }, 2500);
       }
->>>>>>> 6fa97997cbf942217a700460b6d4fddb836e4012
       createCard();
     }
   };
