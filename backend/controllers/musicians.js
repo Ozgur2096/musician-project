@@ -11,8 +11,6 @@ export const getMusicians = async (req, res) => {
 };
 
 export const createMusician = async (req, res) => {
-  const avatarUrl = await fetchRandomUser();
-
   const musician = await req.body;
   console.log(musician);
   const {

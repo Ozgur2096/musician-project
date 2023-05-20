@@ -11,8 +11,6 @@ export const getBands = async (req, res) => {
 };
 
 export const createBand = async (req, res) => {
-  const avatarUrl = await fetchRandomUser();
-
   const band = await req.body;
   console.log(band);
   const {
