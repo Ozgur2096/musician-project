@@ -1,15 +1,14 @@
-// PATCH method
-
-export async function updateCard(url, updatedData) {
+export async function createOrUpdateCard(url, updatedData, method) {
   const options = {
-    method: 'PATCH',
+    method: method,
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(updatedData),
   };
   try {
-    await fetch(url, options);
+    const response = await fetch(url, options);
+    return response;
   } catch (e) {
     console.error(e);
   }

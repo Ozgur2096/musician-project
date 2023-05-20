@@ -3,6 +3,8 @@ import { GlobalContext } from '../context/GlobalState';
 import { MdAddBox, MdClose } from 'react-icons/md';
 import { SelectInstrument } from './Select/SelectInstrument';
 import { SelectGenre } from './Select/SelectGenre';
+import { fetchRandomUser } from '../utils/fetchRandomUser';
+import { createOrUpdateCard } from '../utils/createOrUpdateCard';
 
 export const MusicianCardForm = ({ setCreateMusicianCard }) => {
   const { userId } = useContext(GlobalContext);
@@ -60,30 +62,27 @@ export const MusicianCardForm = ({ setCreateMusicianCard }) => {
     e.preventDefault();
 
     if (validateForm()) {
-      fetch('https://musician.onrender.com/musicians', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(musicianData),
-      })
-        .then(response => {
-          if (response.ok) {
-            setSuccessMessage('A new musician card created!');
-          } else {
-            setSuccessMessage('Something went wrong!');
-          }
-          return response;
-        })
-        .then(
-          setTimeout(() => {
-            setCreateMusicianCard(false);
-            window.location.reload(); // Refresh the page
-          }, 2500)
-        )
-        .catch(error => {
-          console.error('Error:', error);
-        });
+      async function createCard() {
+        const image_url = await fetchRandomUser();
+        const data = { ...musicianData, image_url };
+        const response = await createOrUpdateCard(
+          'https://musician.onrender.com/musicians',
+          data,
+          'POST'
+        );
+
+        if (response.ok) {
+          setSuccessMessage('A new musician card created!');
+        } else {
+          setSuccessMessage('Something went wrong!');
+        }
+
+        setTimeout(() => {
+          setCreateMusicianCard(false);
+          window.location.reload(); // Refresh the page
+        }, 2500);
+      }
+      createCard();
     }
   };
 
