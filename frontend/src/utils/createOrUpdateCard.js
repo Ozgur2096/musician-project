@@ -1,10 +1,10 @@
-export async function createOrUpdateCard(url, updatedData, method) {
+export async function createOrUpdateCard(url, data, method) {
   const options = {
     method: method,
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(updatedData),
+    body: JSON.stringify(data),
   };
   try {
     const response = await fetch(url, options);

@@ -67,17 +67,17 @@ export const BandCardForm = ({ setCreateBandCard }) => {
     } else {
       setSuccessMessage('Something went wrong!');
     }
-
-    setTimeout(() => {
-      setCreateBandCard(false);
-      window.location.reload(); // Refresh the page
-    }, 2500);
   }
   const handleSubmit = e => {
     e.preventDefault();
 
     if (validateForm()) {
-      createCard();
+      createCard().then(
+        setTimeout(() => {
+          setCreateBandCard(false);
+          window.location.reload(); // Refresh the page
+        }, 2500)
+      );
     }
   };
 
