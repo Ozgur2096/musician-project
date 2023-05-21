@@ -70,6 +70,11 @@ h3 {
   background-color: var(--color-dark-semitransparent);
 }
 
+.logo-image {
+  width: 20px;
+  height: auto;
+}
+
 /* Containers */
 .container-mypage {
   min-height: 100vh;
@@ -93,11 +98,12 @@ h3 {
 
 .container-add-buttons {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
 }
 .container-add-button {
-  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -306,4 +312,14 @@ button:hover {
   padding: 0.5rem;
   border-radius: 10px;
   background-color: var(--color-dark-semitransparent);
+}
+
+@media only screen and (max-width: 600px) {
+  .nav {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+  .container-notification {
+    flex-direction: column-reverse;
+  }
 }

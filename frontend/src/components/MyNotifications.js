@@ -12,11 +12,15 @@ export const MyNotifications = () => {
     <div className='container-notifications'>
       {cards.map(card => {
         return (
-          <div className='container-notification'>
+          <div key={card.cardId} className='container-notification'>
             <div>
-              <h2>{card.userApplied.length} people applied for this card</h2>
+              <h2>
+                {card.userApplied.length}{' '}
+                {card.userApplied.length < 2 ? 'person' : 'people'} applied for
+                this card
+              </h2>
               {card.userApplied.map(notification => (
-                <div className='applicant'>
+                <div key={card.cardId} className='applicant'>
                   <div>Email: {notification.userEmail}</div>
                   <div>Message: {notification.message}</div>
                 </div>
