@@ -25,7 +25,7 @@ function App() {
           <Route path='/' element={<HomePage />}>
             <Route path='bands' element={<BandsTab />} />
             <Route path='musicians' element={<MusiciansTab />} />
-            <Route path='*' element={<Navigate to='/bands' replace />} />
+            <Route path='/' element={<Navigate to='/bands' replace />} />
           </Route>
           <Route path='/register' element={<RegistrationForm />} />
           <Route path='/login' element={<LogInForm />} />

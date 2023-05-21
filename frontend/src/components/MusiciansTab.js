@@ -19,6 +19,6 @@ export const MusiciansTab = () => {
       </ul>
     );
   } else {
-    return <div>Loading..</div>;
+    return <div>Loading...</div>;
   }
 };

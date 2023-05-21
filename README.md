@@ -48,8 +48,8 @@ frontend
     └── utils
       └── deleteData.js 
       └── fetchData.js
-      └── updateData.js
-      └── update Favorites.js
+      └── createOrUpdateCard.js
+      └── updateFavorites.js
     └── App.css
     └── App.js
     └── index.js

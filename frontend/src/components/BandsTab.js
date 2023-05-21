@@ -16,6 +16,6 @@ export const BandsTab = () => {
       </ul>
     );
   } else {
-    return <div>Loading</div>;
+    return <div>Loading...</div>;
   }
 };
