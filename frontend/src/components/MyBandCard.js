@@ -20,14 +20,14 @@ export const MyBandCard = ({ band }) => {
   const handleEdit = () => {
     setIsEditing(true);
   };
-  const handleDelete = () => {
-    deleteData(`https://musician.onrender.com/bands/${cardId}`);
+  const handleDelete = async () => {
+    await deleteData(`https://musician.onrender.com/bands/${cardId}`);
     window.location.reload();
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const { name, genre, description, looking_for } = editedData;
-    createOrUpdateCard(
+    await createOrUpdateCard(
       `https://musician.onrender.com/bands/${cardId}`,
       {
         name,

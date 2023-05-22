@@ -29,14 +29,14 @@ export const MyMusicianCard = ({ musician }) => {
   const handleEdit = () => {
     setIsEditing(true);
   };
-  const handleDelete = () => {
-    deleteData(`https://musician.onrender.com/musicians/${cardId}`);
+  const handleDelete = async () => {
+    await deleteData(`https://musician.onrender.com/musicians/${cardId}`);
     window.location.reload();
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const { firstName, lastName, instrument, genre, description } = editedData;
-    createOrUpdateCard(
+    await createOrUpdateCard(
       `https://musician.onrender.com/musicians/${cardId}`,
       {
         firstName,
