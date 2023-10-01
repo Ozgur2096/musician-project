@@ -19,7 +19,7 @@ app.use('/musicians', musicianRoutes);
 app.use('/users', userRoutes);
 
 app.get('/', (req, res) => {
-  res.send('hello from homepage');
+  res.send('hello from Homepage');
 });
 
 client
